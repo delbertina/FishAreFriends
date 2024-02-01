@@ -1,38 +1,56 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { useState } from "react";
+import { ActionButton } from "./types/action-button";
 
 export default function Home() {
   const imgAssetBasePath = "/FishAreFriends/assets/imgs/";
-  const fishBounceAnimateClass = styles.fade;
   const buttonCircleRadius = 200;
 
-  const fishDefaultBasic = "u1f41f_u1f642.png";
-  const fishActionHit = "u1f41f_u1f4ab.png";
+  const fishDefaultImg = "u1f41f_u1f642.png";
+  const fishDefaultAnimate = styles.fade;
 
-  const [currentFish, setCurrentFish] = useState(fishDefaultBasic);
-  let actionButtons = ["Pet", "Feed", "Clean", "Play", "Hit", "Medicine", "Joke", "Lights", "Dress"];
+  const [currentFishImg, setCurrentFishImg] = useState(fishDefaultImg);
+  let actionButtons: ActionButton[] = [
+    { text: "Pet", imgSrc: "u1f41f_u1f60a.png", animateClass: styles.fade },
+    { text: "Feed", imgSrc: "u1f34c_u1f41f.png", animateClass: styles.fade },
+    {
+      text: "Clean",
+      imgSrc: "u1f41f_u2601-ufe0f.png",
+      animateClass: styles.fade,
+    },
+    { text: "Play", imgSrc: "u1f3c0_u1f41f.png", animateClass: styles.fade },
+    { text: "Hit", imgSrc: "u1f41f_u1f4ab.png", animateClass: styles.fade },
+    {
+      text: "Medicine",
+      imgSrc: "u1f41f_u1f927.png",
+      animateClass: styles.fade,
+    },
+    { text: "Joke", imgSrc: "u1f41f_u1f602.png", animateClass: styles.fade },
+    { text: "Lights", imgSrc: "u1f41f_u1f634.png", animateClass: styles.fade },
+    { text: "Dress", imgSrc: "u1f41f_u1f451.png", animateClass: styles.fade },
+  ];
 
-  const [currentFishClass, setCurrentFishClass] = useState<string>("")
+  const [currentFishClass, setCurrentFishClass] = useState<string>("");
 
   const delayedChangeToDefault = (millis: number) => {
     setTimeout(() => {
-      setCurrentFish(fishDefaultBasic);
-      setCurrentFishClass(fishBounceAnimateClass);
+      setCurrentFishImg(fishDefaultImg);
+      setCurrentFishClass(fishDefaultAnimate);
     }, millis);
-  }
+  };
 
-  const changeCurrentFish = (newSource: string) => {
-    setCurrentFish(newSource);
-    setCurrentFishClass(fishBounceAnimateClass);
-    delayedChangeToDefault(5000);
-  }
+  const changeCurrentFish = (button: ActionButton) => {
+    setCurrentFishImg(button.imgSrc);
+    setCurrentFishClass(button.animateClass);
+    delayedChangeToDefault(2000);
+  };
 
   const get_center_img_path = () => {
-    return imgAssetBasePath + currentFish
-  }
+    return imgAssetBasePath + currentFishImg;
+  };
 
   return (
     <main className={styles.main}>
@@ -57,7 +75,7 @@ export default function Home() {
           <button
             key={i}
             className={styles.radial_action_button}
-            onClick={() => changeCurrentFish(fishActionHit)}
+            onClick={() => changeCurrentFish(action)}
             style={
               {
                 "--radial-action-button-y":
@@ -65,13 +83,14 @@ export default function Home() {
                     Math.sin((2 * Math.PI * i) / actionButtons.length) +
                   "px",
                 "--radial-action-button-x":
-                  0-(buttonCircleRadius *
-                    Math.cos((2 * Math.PI * i) / actionButtons.length)) +
+                  0 -
+                  buttonCircleRadius *
+                    Math.cos((2 * Math.PI * i) / actionButtons.length) +
                   "px",
               } as React.CSSProperties
             }
           >
-            {action}
+            {action.text}
           </button>
         ))}
       </div>
