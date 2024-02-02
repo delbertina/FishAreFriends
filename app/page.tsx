@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import { useState } from "react";
 import { ActionButton } from "./types/action-button";
+import { ActionButtonList } from "./data/action-buttons";
 
 export default function Home() {
   const imgAssetBasePath = "/FishAreFriends/assets/imgs/";
@@ -13,25 +14,7 @@ export default function Home() {
   const fishDefaultAnimate = styles.fade;
 
   const [currentFishImg, setCurrentFishImg] = useState(fishDefaultImg);
-  let actionButtons: ActionButton[] = [
-    { text: "Pet", imgSrc: "u1f41f_u1f60a.png", animateClass: styles.fade },
-    { text: "Feed", imgSrc: "u1f34c_u1f41f.png", animateClass: styles.fade },
-    {
-      text: "Clean",
-      imgSrc: "u1f41f_u2601-ufe0f.png",
-      animateClass: styles.fade,
-    },
-    { text: "Play", imgSrc: "u1f3c0_u1f41f.png", animateClass: styles.fade },
-    { text: "Hit", imgSrc: "u1f41f_u1f4ab.png", animateClass: styles.fade },
-    {
-      text: "Medicine",
-      imgSrc: "u1f41f_u1f927.png",
-      animateClass: styles.fade,
-    },
-    { text: "Joke", imgSrc: "u1f41f_u1f602.png", animateClass: styles.fade },
-    { text: "Lights", imgSrc: "u1f41f_u1f634.png", animateClass: styles.fade },
-    { text: "Dress", imgSrc: "u1f41f_u1f451.png", animateClass: styles.fade },
-  ];
+  let actionButtons: ActionButton[] = ActionButtonList;
 
   const [currentFishClass, setCurrentFishClass] = useState<string>("");
 
@@ -43,7 +26,8 @@ export default function Home() {
   };
 
   const changeCurrentFish = (button: ActionButton) => {
-    setCurrentFishImg(button.imgSrc);
+    const randomImg = button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
+    setCurrentFishImg(randomImg);
     setCurrentFishClass(button.animateClass);
     delayedChangeToDefault(2000);
   };
