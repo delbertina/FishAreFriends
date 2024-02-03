@@ -1,9 +1,48 @@
-.radial_action_button {
-  overflow: hidden;
+$button_background_teal: #27aae2;
+$button_background_navy: #1a75bc;
+$button_background_pink: #ed008c;
+$button_background_yellow: #fff890;
+$button_background_white: #ffffff;
+
+.action_button_background_triangle {
+  width: 0; 
+  height: 0; 
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  
+  border-left: 80px solid $button_background_teal;
   position: absolute;
-  min-width: 80px;
-  min-height: 40px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.action_button_background_rectangle {
+  width: 100px;
+  height: 50px; 
+  
+  background: $button_background_yellow;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: -1;
+}
+
+.radial_action_button {
+  min-height: 20px;
+  max-height: 40px;
+  margin-top: 30px;
+  background: black;
+  color: white;
+  border: none;
+  padding: 0 5px 0 5px;
+  margin-left: 10px;
+}
+
+.radial_action_button_wrapper {
+  position: absolute;
   transform: translate(var(--radial-action-button-y), var(--radial-action-button-x));
+  cursor: pointer;
 }
 
 .main {

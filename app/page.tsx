@@ -26,7 +26,8 @@ export default function Home() {
   };
 
   const changeCurrentFish = (button: ActionButton) => {
-    const randomImg = button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
+    const randomImg =
+      button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
     setCurrentFishImg(randomImg);
     setCurrentFishClass(button.animateClass);
     delayedChangeToDefault(2000);
@@ -56,10 +57,10 @@ export default function Home() {
           priority
         ></Image>
         {actionButtons.map((action, i) => (
-          <button
+          <div
             key={i}
-            className={styles.radial_action_button}
             onClick={() => changeCurrentFish(action)}
+            className={styles.radial_action_button_wrapper}
             style={
               {
                 "--radial-action-button-y":
@@ -74,8 +75,17 @@ export default function Home() {
               } as React.CSSProperties
             }
           >
-            {action.text}
-          </button>
+            <div key={i} className={styles.radial_action_button}>
+              {action.text}
+            </div>
+            <div
+              className={
+                i % 2 === 0
+                  ? styles.action_button_background_triangle
+                  : styles.action_button_background_rectangle
+              }
+            />
+          </div>
         ))}
       </div>
     </main>
