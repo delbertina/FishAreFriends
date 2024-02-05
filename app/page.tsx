@@ -26,11 +26,13 @@ export default function Home() {
   };
 
   const changeCurrentFish = (button: ActionButton) => {
-    const randomImg =
+    setTimeout(() => {
+      const randomImg =
       button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
-    setCurrentFishImg(randomImg);
-    setCurrentFishClass(button.animateClass);
-    delayedChangeToDefault(2000);
+      setCurrentFishImg(randomImg);
+      setCurrentFishClass(button.animateClass);
+      delayedChangeToDefault(2000);
+    }, button.preDelay);
   };
 
   const get_center_img_path = () => {
@@ -80,9 +82,15 @@ export default function Home() {
             </div>
             <div
               className={
-                i % 2 === 0
-                  ? styles.action_button_background_triangle
-                  : styles.action_button_background_rectangle
+                i % 5 === 0
+                  ? styles.action_button_background_triangle_iso
+                  : i % 5 === 1 
+                    ? styles.action_button_background_rectangle
+                    : i % 5 === 2
+                      ? styles.action_button_background_hcircle
+                      : i % 5 === 3
+                        ? styles.action_button_background_triangle_equ
+                        : styles.action_button_background_square
               }
             />
           </div>

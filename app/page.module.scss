@@ -4,7 +4,7 @@ $button_background_pink: #ed008c;
 $button_background_yellow: #fff890;
 $button_background_white: #ffffff;
 
-.action_button_background_triangle {
+.action_button_background_triangle_iso {
   width: 0; 
   height: 0; 
   border-top: 40px solid transparent;
@@ -17,6 +17,19 @@ $button_background_white: #ffffff;
   z-index: -1;
 }
 
+.action_button_background_triangle_equ {
+  width: 0; 
+  height: 0; 
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  
+  border-top: 60px solid $button_background_navy;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: -1;
+}
+
 .action_button_background_rectangle {
   width: 100px;
   height: 50px; 
@@ -24,6 +37,29 @@ $button_background_white: #ffffff;
   background: $button_background_yellow;
   position: absolute;
   top: 10px;
+  left: 0;
+  z-index: -1;
+}
+
+.action_button_background_square {
+  width: 60px;
+  height: 60px; 
+  
+  background: $button_background_white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.action_button_background_hcircle {
+  width: 100px;
+  height: 50px; 
+  border-radius: 50px 50px 0 0;
+  
+  background: $button_background_pink;
+  position: absolute;
+  top: 20px;
   left: 0;
   z-index: -1;
 }
