@@ -19,18 +19,21 @@ export const ActionButtonList: ActionButton[] = [
     imgSrc: ["u1f41f_u2601-ufe0f.png"],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 10,
   },
   {
     text: "Play",
     imgSrc: ["u1f3c0_u1f41f.png", "u26bd_u1f41f.png"],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 10,
   },
   {
     text: "Hit",
     imgSrc: ["u1f41f_u1f4ab.png", "u1f41f_u1f62d.png"],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 20,
   },
   {
     text: "Medicine",
@@ -42,18 +45,21 @@ export const ActionButtonList: ActionButton[] = [
     ],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 20,
   },
   {
     text: "Joke",
     imgSrc: ["u1f41f_u1f602.png", "u1f41f_u1f644.png"],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 20,
   },
   {
     text: "Lights",
     imgSrc: ["u1f41f_u1f634.png", "u1f41f_u1f31f.png"],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 30,
   },
   {
     text: "Dress",
@@ -65,5 +71,6 @@ export const ActionButtonList: ActionButton[] = [
     ],
     animateClass: styles.fade,
     preDelay: 0,
+    ageRequirement: 30,
   },
 ];

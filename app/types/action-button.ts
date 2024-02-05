@@ -3,4 +3,5 @@ export interface ActionButton {
     imgSrc: string[];
     animateClass: string;
     preDelay: number;
+    ageRequirement?: number;
 }
