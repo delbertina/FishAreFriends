@@ -14,21 +14,23 @@ export default function Home() {
   const fishDefaultAnimate = styles.fade;
 
   const [currentFishImg, setCurrentFishImg] = useState(fishDefaultImg);
-  let actionButtons: ActionButton[] = ActionButtonList;
-
   const [currentFishClass, setCurrentFishClass] = useState<string>("");
+  const [currentFishAge, setCurrentFishAge] = useState<number>(0);
+
+  let actionButtons: ActionButton[] = ActionButtonList;
 
   const delayedChangeToDefault = (millis: number) => {
     setTimeout(() => {
       setCurrentFishImg(fishDefaultImg);
       setCurrentFishClass(fishDefaultAnimate);
+      setCurrentFishAge(currentFishAge + 1);
     }, millis);
   };
 
   const changeCurrentFish = (button: ActionButton) => {
     setTimeout(() => {
       const randomImg =
-      button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
+        button.imgSrc[Math.floor(Math.random() * button.imgSrc.length)];
       setCurrentFishImg(randomImg);
       setCurrentFishClass(button.animateClass);
       delayedChangeToDefault(2000);
@@ -58,43 +60,53 @@ export default function Home() {
           width={100}
           priority
         ></Image>
-        {actionButtons.map((action, i) => (
-          <div
-            key={i}
-            onClick={() => changeCurrentFish(action)}
-            className={styles.radial_action_button_wrapper}
-            style={
-              {
-                "--radial-action-button-y":
-                  buttonCircleRadius *
-                    Math.sin((2 * Math.PI * i) / actionButtons.length) +
-                  "px",
-                "--radial-action-button-x":
-                  0 -
-                  buttonCircleRadius *
-                    Math.cos((2 * Math.PI * i) / actionButtons.length) +
-                  "px",
-              } as React.CSSProperties
-            }
-          >
-            <div key={i} className={styles.radial_action_button}>
-              {action.text}
-            </div>
+        {actionButtons
+          .filter(
+            (item) =>
+              !item.ageRequirement || item.ageRequirement <= currentFishAge
+          )
+          .map((action, i) => (
             <div
-              className={
-                i % 5 === 0
-                  ? styles.action_button_background_triangle_iso
-                  : i % 5 === 1 
+              key={i}
+              onClick={() => changeCurrentFish(action)}
+              className={styles.radial_action_button_wrapper}
+              style={
+                {
+                  "--radial-action-button-y":
+                    buttonCircleRadius *
+                      Math.sin((2 * Math.PI * i) / actionButtons.length) +
+                    "px",
+                  "--radial-action-button-x":
+                    0 -
+                    buttonCircleRadius *
+                      Math.cos((2 * Math.PI * i) / actionButtons.length) +
+                    "px",
+                } as React.CSSProperties
+              }
+            >
+              <div key={i} className={styles.radial_action_button}>
+                {action.text}
+              </div>
+              <div
+                className={
+                  i % 5 === 0
+                    ? styles.action_button_background_triangle_iso
+                    : i % 5 === 1
                     ? styles.action_button_background_rectangle
                     : i % 5 === 2
-                      ? styles.action_button_background_hcircle
-                      : i % 5 === 3
-                        ? styles.action_button_background_triangle_equ
-                        : styles.action_button_background_square
-              }
-            />
-          </div>
-        ))}
+                    ? styles.action_button_background_hcircle
+                    : i % 5 === 3
+                    ? styles.action_button_background_triangle_equ
+                    : styles.action_button_background_square
+                }
+              />
+            </div>
+          ))}
+      </div>
+      <div>
+        Your fish is <strong>{currentFishAge}</strong>{" "}
+        {/* Would you just look at that detail oriented feature right below! */}
+        {currentFishAge === 1 ? "year" : "years"} old 
       </div>
     </main>
   );
