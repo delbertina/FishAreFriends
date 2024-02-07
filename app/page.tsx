@@ -13,17 +13,25 @@ export default function Home() {
   const fishDefaultImg = "u1f41f_u1f642.png";
   const fishDefaultAnimate = styles.fade;
 
+  const getFilteredActions = (age: number): ActionButton[] => {
+    return ActionButtonList.filter(
+      (item) =>
+        !item.ageRequirement || item.ageRequirement <= age
+    )
+  }
+
   const [currentFishImg, setCurrentFishImg] = useState(fishDefaultImg);
   const [currentFishClass, setCurrentFishClass] = useState<string>("");
   const [currentFishAge, setCurrentFishAge] = useState<number>(0);
-
-  let actionButtons: ActionButton[] = ActionButtonList;
-
+  const [currentFishActions, setCurrentFishActions] = useState<Array<ActionButton>>(getFilteredActions(0));
+  
   const delayedChangeToDefault = (millis: number) => {
     setTimeout(() => {
+      const newFishAge = currentFishAge + 1;
       setCurrentFishImg(fishDefaultImg);
       setCurrentFishClass(fishDefaultAnimate);
-      setCurrentFishAge(currentFishAge + 1);
+      setCurrentFishAge(newFishAge);
+      setCurrentFishActions(getFilteredActions(newFishAge));
     }, millis);
   };
 
@@ -60,11 +68,7 @@ export default function Home() {
           width={100}
           priority
         ></Image>
-        {actionButtons
-          .filter(
-            (item) =>
-              !item.ageRequirement || item.ageRequirement <= currentFishAge
-          )
+        {currentFishActions
           .map((action, i) => (
             <div
               key={i}
@@ -74,12 +78,12 @@ export default function Home() {
                 {
                   "--radial-action-button-y":
                     buttonCircleRadius *
-                      Math.sin((2 * Math.PI * i) / actionButtons.length) +
+                      Math.sin((2 * Math.PI * i) / currentFishActions.length) +
                     "px",
                   "--radial-action-button-x":
                     0 -
                     buttonCircleRadius *
-                      Math.cos((2 * Math.PI * i) / actionButtons.length) +
+                      Math.cos((2 * Math.PI * i) / currentFishActions.length) +
                     "px",
                 } as React.CSSProperties
               }
