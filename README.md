@@ -1,5 +1,9 @@
 # FishAreFriends
-Fish pet simulator inspired by classic 90's web browsing and tamagotchi. Built with Next.js with an emphasis on CSS animation
+Fish pet simulator inspired by classic 90's web browsing and tamagotchi. Built with Next.js with an emphasis on CSS animation.
+
+[>>> Try it out <<<](https://delbertina.github.io/FishAreFriends/)
+
+<img src="https://github.com/delbertina/FishAreFriends/assets/6349928/185fdc4b-7ca3-495f-bec3-07468e087148" width="400"/>
 
 #
 
