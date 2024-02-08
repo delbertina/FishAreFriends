@@ -3,6 +3,17 @@ Fish pet simulator inspired by classic 90's web browsing and tamagotchi. Built w
 
 #
 
+### Planned Features
+- More unique animations
+    - Unique for each action
+    - Ambient animations
+- Nostalgia mode
+    - Comforting "nuisances" from the era
+    - Various inside jokes
+- Stats system
+    - Basic needs depleat over time
+    - Thirsty, hungry, dirty, etc
+
 #
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.
@@ -13,18 +24,10 @@ com/vercel/next.js/tree/canary/packages/create-next-app).
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000/FishAreFriends](http://localhost:3000/FishAreFriends) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
